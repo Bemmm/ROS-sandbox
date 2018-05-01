@@ -1,0 +1,41 @@
+{
+  "name": "ros",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "precommit": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bemmm/ROS-sandbox.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bemmm/ROS-sandbox/issues"
+  },
+  "homepage": "https://github.com/Bemmm/ROS-sandbox#readme",
+  "devDependencies": {
+    "eslint": "^3.13.1",
+    "mocha": "^3.2.0",
+    "nodejs-dashboard": "^0.3.0",
+    "should": "^11.1.2",
+    "snazzy": "^6.0.0",
+    "standard": "^8.6.0",
+    "supertest": "^2.0.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.14.0",
+    "express-validator": "^5.1.2",
+    "helmet": "^3.4.0",
+    "http-status": "^0.2.5",
+    "morgan": "^1.7.0",
+    "nodemon": "^1.17.3",
+    "realm": "^2.4.0",
+    "spdy": "^3.4.4"
+  }
+}

@@ -3,7 +3,7 @@ const dbSettings = {
   PASSWORD: 'EsUc7Ysm',
   REALM_URL: 'realm://acc.showsourcing.com:9080',
   REALM_AUTH_URL: 'http://acc.showsourcing.com:9080',
-  AUTH_INFO_REALM_URL: 'auth/auth-info'
+  AUTH_INFO_REALM_URL: 'auth/auth_info'
 }
 
 const serverSettings = {

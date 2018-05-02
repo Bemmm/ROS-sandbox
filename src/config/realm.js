@@ -13,22 +13,23 @@ const UserSchema = {
 const connect = (options, mediator) => {
   mediator.once('boot.ready', () => {
     Realm.Sync.User.login(options.REALM_AUTH_URL, options.USER, options.PASSWORD).then(user => {
+      console.log('REALM NAME', user.identity)
+      console.log('realm server')
       let realm = Realm.open({
-        // path: options.AUTH_INFO_REALM_URL,
         schema: [UserSchema],
+        // readOnly: true,
         sync: {
-          user,
-          url: `${options.REALM_URL}/~/${options.AUTH_INFO_REALM_URL}`
+          user: user,
+          url: options.REALM_URL + '/' + options.AUTH_INFO_REALM_URL
         }
       })
-      .then(data => {
+      .then(realm => {
+        console.log('REALM Empty?', realm.objects('Users'))
         mediator.emit('db.ready', realm)
-        return data
       })
       .catch(err => {
         mediator.emit('db.error', err)
       })
-      .then(data => console.log(JSON.stringify(data)))
     })
   })
 }

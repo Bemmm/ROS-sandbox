@@ -3,7 +3,7 @@ const morgan = require('morgan')
 const helmet = require('helmet')
 const bodyParser = require('body-parser')
 const expressValidator = require('express-validator')
-const api = require('../api/authentication')
+const api = require('../api')
 
 const start = (options) => {
   return new Promise((resolve, reject) => {
@@ -24,7 +24,10 @@ const start = (options) => {
       reject(new Error('Something went wrong!, err:' + err))
       res.status(500).send('Something went wrong!')
     })
-
+    app.use((req, res, next) => {
+      req.app.locals.repo = options.repo
+      next()
+    })
     api(app, options)
 
     const server = app.listen(options.port, () => resolve(server))

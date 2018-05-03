@@ -1,4 +1,5 @@
 const Realm = require('realm')
+
 const {UserSchema} = require('../models/user-model')
 
 const connect = (options, mediator) => {

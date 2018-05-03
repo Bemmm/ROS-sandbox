@@ -4,7 +4,7 @@ const helmet = require('helmet')
 const bodyParser = require('body-parser')
 const expressValidator = require('express-validator')
 const api = require('../api')
-const OAuthServer = require('express-oauth-server')
+const oauthserver = require('oauth2-server');
 
 const start = (options) => {
   return new Promise((resolve, reject) => {
@@ -31,7 +31,13 @@ const start = (options) => {
       req.app.locals.repo = options.repo
       next()
     })
-    app.use(app.oauth.authorize());
+
+    app.oauth = oauthserver({
+      model: require('../models/oauth2-model.js'),
+      grants: ['password', 'refresh_token'],
+      debug: true
+    })
+
     api(app, options)
 
     const server = app.listen(options.port, () => resolve(server))

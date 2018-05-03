@@ -30,12 +30,12 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.14.0",
-    "express-oauth-server": "^2.0.0",
     "express-validator": "^5.1.2",
     "helmet": "^3.4.0",
     "http-status": "^0.2.5",
     "morgan": "^1.7.0",
     "nodemon": "^1.17.3",
+    "oauth2-server": "^3.0.0",
     "realm": "^2.4.0",
     "spdy": "^3.4.4"
   }

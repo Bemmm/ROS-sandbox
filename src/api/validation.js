@@ -1,6 +1,6 @@
 const {
   errorHandler
-} = require('../../helpers')
+} = require('../helpers')
 
 const postValidation = (req, res, next) => {
   console.log(req.body)

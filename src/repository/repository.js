@@ -1,13 +1,25 @@
-'use strict'
+const { User } = require('../models/user')
 const repository = (connection) => {
   const realm = connection
 
-  const GetUserByEmail = (data) => {
+  const findByEmail = (email) => {
     return new Promise((resolve, reject) => {
       let users = realm.objects('Users')
-      let user = users.filtered(`email == '${data.email}'`)
-      if (user) {
-        resolve(user[0])
+      let result = users.filtered(`email == '${email}'`)
+      if (result.length) {
+        resolve(new User(result[0].email, result[0].password, result[0].userId))
+      } else {
+        reject('User not found')
+      }
+    })
+  }
+
+  const findById = (userId) => {
+    return new Promise((resolve, reject) => {
+      let users = realm.objects('Users')
+      let result = users.filtered(`userId == '${userId}'`)
+      if (result.length) {
+        resolve(new User(result[0].email, result[0].password, result[0].userId))
       } else {
         reject('User not found')
       }
@@ -19,7 +31,8 @@ const repository = (connection) => {
   }
 
   return {
-    GetUserByEmail,
+    findByEmail,
+    findById,
     disconnect
   }
 }

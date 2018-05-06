@@ -7,7 +7,9 @@ const dbSettings = {
 }
 
 const serverSettings = {
-  port: process.env.PORT || 3000
+  port: process.env.PORT || 3000,
+  SESSION_SECRET: process.env.SESSION_SECRET || 'ExeubUHoQB--|dev|--BQoHUbuexE'
+
 }
 
 module.exports = Object.assign({}, { dbSettings, serverSettings })

@@ -3,8 +3,7 @@ const morgan = require('morgan')
 const helmet = require('helmet')
 const bodyParser = require('body-parser')
 const expressValidator = require('express-validator')
-const api = require('../api')
-const oauthserver = require('oauth2-server');
+const api = require('../api/authorization')
 
 const start = (options) => {
   return new Promise((resolve, reject) => {
@@ -15,9 +14,6 @@ const start = (options) => {
       reject(new Error('The server must be started with an available port'))
     }
     const app = express()
-    app.oauth = new OAuthServer({
-      model: {}
-    })
     app.use(morgan('dev'))
     app.use(expressValidator())
     app.use(bodyParser.json())
@@ -30,12 +26,6 @@ const start = (options) => {
     app.use((req, res, next) => {
       req.app.locals.repo = options.repo
       next()
-    })
-
-    app.oauth = oauthserver({
-      model: require('../models/oauth2-model.js'),
-      grants: ['password', 'refresh_token'],
-      debug: true
     })
 
     api(app, options)

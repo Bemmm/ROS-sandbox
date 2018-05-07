@@ -9,7 +9,7 @@ const repository = (connection) => {
       if (result.length) {
         resolve(new User(result[0].email, result[0].password, result[0].userId))
       } else {
-        reject('User not found')
+        reject('Sorry, wrong email or password')
       }
     })
   }
@@ -21,7 +21,7 @@ const repository = (connection) => {
       if (result.length) {
         resolve(new User(result[0].email, result[0].password, result[0].userId))
       } else {
-        reject('User not found')
+        reject('Sorry, wrong email or password')
       }
     })
   }

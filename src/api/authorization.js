@@ -8,14 +8,18 @@ module.exports = (app, options) => {
     repo.findByEmail(req.body.email)
       .then(user => {
         user.comparePasswords(req.body.password, (err, result) => {
+          console.log('Result', err, result)
           if (err) {
             return res.status(status.INTERNAL_SERVER_ERROR)
             .json({message: 'Sorry, something goes wrong'})
           }
-          if (result) return res.status(status.OK).json(user.authorize)
+          if (!result) return res.status(status.NOT_FOUND).json({message: 'Sorry, wrong email or password'})
+          return res.status(status.OK).json(user.authorize)
         })
       })
-      .catch(next)
+      .catch((err) => {
+        return res.status(status.NOT_FOUND).json({message: err})
+      })
   })
 
   app.get('/:userId', (req, res, next) => {
@@ -28,7 +32,9 @@ module.exports = (app, options) => {
         return res.status(status.OK).json(user.info(token))
       })
     })
-    .catch(next)
+    .catch((err) => {
+      return res.status(status.NOT_FOUND).json({message: err})
+    })
   })
 }
 

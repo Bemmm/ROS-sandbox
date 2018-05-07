@@ -23,7 +23,6 @@ class User {
   info (token) {
     const user = this
     return {
-      'x-access-token': token,
       'email': user.email,
       // 'password': user.password,
       'userId': user.userId
